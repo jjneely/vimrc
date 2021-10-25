@@ -26,11 +26,14 @@ nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
 
+syntax on
+
 " Go go gadget spell checking!
 " Set spell check on for unknow files
 autocmd BufRead,BufNewFile * if &ft == '' | set spell spelllang=en_us | endif
  " spell check text files
 autocmd FileType text setlocal spell  spelllang=en_us
+autocmd FileType markdown setlocal spell  spelllang=en_us
 set spellfile=~/.vim/spell.en_us.add
 " zg to add word to word list
 " zw to reverse
@@ -70,3 +73,11 @@ autocmd InsertLeave * redraw!
 
 set hidden " Allow switching buffers without saving
 set shell=/bin/bash
+
+" Work with Makefiles
+autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0 tw=0
+autocmd FileType go set noexpandtab shiftwidth=4 softtabstop=0 tw=0
+autocmd FileType template set tw=0
+autocmd FileType yaml set tw=0
+autocmd FileType dockerfile set tw=0
+autocmd FileType gitcommit set tw=78
