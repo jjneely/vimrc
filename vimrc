@@ -14,17 +14,41 @@ set smarttab
 set backspace=indent,eol,start
 set laststatus=2
 set ruler
+set showcmd
+set showmatch
 set wildmenu
+set wildmode=longest:list,full
 set incsearch
 set autoindent
 set autoread
 set history=1000
 set tabpagemax=50
+set scrolloff=10
+
+" Mouse actions take us to Visual mode and do expected selections provided
+" we are not in Insert mode.  Auto copy visual selected text to the system
+" clipboard (*).
+set mouse=nv
+set clipboard=autoselect,exclude:cons\|linux
+
+" Change the direction of new splits to be more natural.
+set splitbelow
+set splitright
 
 " Hit F2 in insert mode to past text without auto-indent
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
+
+" F3 to remove all trailing whitespace
+nnoremap <silent> <F3> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
+" netrw settings -- :Vex :Sex
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
+let g:netrw_browse_split = 2
+let g:netrw_winsize = 25
+let g:netrw_altv = 1
 
 syntax on
 
