@@ -35,6 +35,10 @@ set clipboard=autoselect,exclude:cons\|linux
 set splitbelow
 set splitright
 
+" colors, 16 colors scheme to match shell
+colorscheme noctu
+set bg=dark " Dark background
+
 " Hit F2 in insert mode to past text without auto-indent
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
@@ -43,7 +47,7 @@ set showmode
 " F3 to remove all trailing whitespace
 nnoremap <silent> <F3> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
-" netrw settings -- :Vex :Sex
+" netrw (file browser) settings -- :Vex :Sex :edit .
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_browse_split = 2
@@ -83,8 +87,15 @@ if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
-colorscheme noctu
-set bg=dark " Dark background
+" ctags and tags (brew install ctags on macos)
+command! MakeTags !ctags -R .
+
+" Autocomplete out of the box notes
+" ^N -- autocomplete
+" ^X^F -- autocomplete file names
+" ^X^] -- autocomplate tags
+" ^X^N -- autocomplete from just this file
+" Navigation: ^N and ^P
 
 " Highlight extra whitespace
 " The following alternative may be less obtrusive.
