@@ -24,6 +24,11 @@ set autoread
 set history=1000
 set tabpagemax=50
 set scrolloff=10
+set hidden " Allow switching buffers without saving
+set shell=/bin/bash
+set hlsearch " Hightlight Search
+
+syntax on
 
 " Mouse actions take us to Visual mode and do expected selections provided
 " we are not in Insert mode.  Auto copy visual selected text to the system
@@ -36,8 +41,8 @@ set splitbelow
 set splitright
 
 " colors, 16 colors scheme to match shell
-colorscheme noctu
 set bg=dark " Dark background
+colorscheme noctu
 
 " Hit F2 in insert mode to past text without auto-indent
 nnoremap <F2> :set invpaste paste?<CR>
@@ -47,14 +52,18 @@ set showmode
 " F3 to remove all trailing whitespace
 nnoremap <silent> <F3> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
+" F4 to clear search highlight and set the highlight to be annoying
+nnoremap <silent> <F4> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><F4>
+highlight IncSearch cterm=NONE ctermfg=black ctermbg=yellow
+highlight Search cterm=NONE ctermfg=yellow ctermbg=black
+highlight Visual cterm=NONE ctermfg=black ctermbg=blue
+
 " netrw (file browser) settings -- :Vex :Sex :edit .
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_browse_split = 2
 let g:netrw_winsize = 25
 let g:netrw_altv = 1
-
-syntax on
 
 " Go go gadget spell checking!
 " Set spell check on for unknow files
@@ -82,11 +91,6 @@ set relativenumber " relative line numbers!
 set path=.,**
 set tags=./tags;,.git/tags;,./TAGS,tags,TAGS
 
-" Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-endif
-
 " ctags and tags (brew install ctags on macos)
 command! MakeTags !ctags -R .
 
@@ -105,9 +109,6 @@ autocmd BufWritePre * :%s/\s\+$//e "trim trailing whitespace on write
 " Show trailing whitespace:
 call matchadd('ExtraWhitespace', '\s\+\%#\@<!$', 11)
 autocmd InsertLeave * redraw!
-
-set hidden " Allow switching buffers without saving
-set shell=/bin/bash
 
 " Work with Makefiles
 autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0 tw=0
