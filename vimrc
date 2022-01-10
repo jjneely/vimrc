@@ -58,6 +58,9 @@ highlight IncSearch cterm=NONE ctermfg=black ctermbg=yellow
 highlight Search cterm=NONE ctermfg=yellow ctermbg=black
 highlight Visual cterm=NONE ctermfg=black ctermbg=blue
 
+" Pop open a Terminal
+nnoremap <silent> <F5> :vert terminal<CR>
+
 " netrw (file browser) settings -- :Vex :Sex :edit .
 let g:netrw_liststyle = 3
 let g:netrw_banner = 0
