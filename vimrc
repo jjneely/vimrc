@@ -48,6 +48,8 @@ colorscheme noctu
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
+" reselect pasted text, pairs with 'gv' to re-select last visual selection
+nnoremap gp `[v`]
 
 " F3 to remove all trailing whitespace
 nnoremap <silent> <F3> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
