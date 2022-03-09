@@ -19,7 +19,24 @@ vim.g.maplocalleader = " "
 --   command_mode = "c",
 
 -- Normal Mode --
-keymap("n", "<leader>e", ":Lex 30<cr>", opts)
+keymap("n", "<leader>e", ":Lex 30<cr>", opts) -- file explorer
+
+-- Paste Mode bindings
+keymap("n", "gp", "`[v`]", opts) -- reselect pasted text
+keymap("n", "<F2>", ":set invpaste paste?<CR>", opts) -- go into paste mode from normal mode
+
+-- F3 trims trailing whitespace
+keymap("n", "<F3>", ":let _s=@/ <Bar> :%s/\\s\\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>", opts)
+
+-- F4 Clear Search highlight
+keymap("n", "<F4>", ":nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><F4>", opts)
+
+-- F5 Terminal
+keymap("n", "<F5>", ":10split term://bash<CR>", opts)
+keymap("t", "<Esc>", "<C-\\><C-n>", opts)
+vim.cmd [[
+    autocmd TermClose * execute 'bdelete! ' . expand('<abuf>')
+]] -- close the terminal window automatically
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
@@ -64,4 +81,3 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-
