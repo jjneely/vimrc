@@ -1,0 +1,33 @@
+window:
+  padding:
+    x: 6
+    y: 3
+  dynamic_padding: true
+
+font:
+  normal:
+    # Default:
+    #   - (macOS) Menlo
+    #   - (Linux/BSD) monospace
+    #   - (Windows) Consolas
+    family: JuliaMono
+
+  size: 16
+  offset:
+    y: 2
+
+shell:
+  program: /usr/local/bin/bash
+  args:
+    - --login
+
+selection:
+  save_to_clipboard: true
+
+colors:
+  primary:
+    background: '#000000'
+    foreground: '#c8c8c8'
+
+key_bindings:
+  - { key: Return, mods: Command, action: CreateNewWindow }
