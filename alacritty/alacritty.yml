@@ -11,13 +11,15 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     family: JuliaMono
+    #family: IBM Plex Mono
+    style: Regular
 
   size: 16
   offset:
     y: 2
 
 shell:
-  program: /usr/local/bin/bash
+  program: bash
   args:
     - --login
 
