@@ -12,7 +12,7 @@ font:
     #   - (Windows) Consolas
     family: JuliaMono
     #family: IBM Plex Mono
-    style: Regular
+    style: Medium
 
   size: 16
   offset:
