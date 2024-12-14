@@ -46,7 +46,7 @@ local options = {
   path = ".,**",
   tags = "./tags;,.git/tags;,./TAGS,tags,TAGS",
 
-  pastetoggle = "<F2>",       -- Toggle paste mode
+  -- pastetoggle = "<F2>",       -- Toggle paste mode
 }
 
 -- Shorten messages, skip other messages and hit-enter breaks
