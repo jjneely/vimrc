@@ -14,12 +14,12 @@ font:
     #family: IBM Plex Mono
     style: Medium
 
-  size: 16
+  size: 18
   offset:
     y: 2
 
 shell:
-  program: bash
+  program: /usr/local/bin/bash
   args:
     - --login
 

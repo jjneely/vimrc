@@ -1,7 +1,7 @@
 require "jjneely.options"
 require "jjneely.keymaps"
 require "jjneely.plugins"
-require "jjneely.cmp"
+--require "jjneely.cmp"
 
 require "jjneely.colors"
 
@@ -25,7 +25,6 @@ set spellfile=~/.vim/spell.en_us.add
 " zw to reverse
 " zug to remove word from word list
 " z= to get list of possibilities
-
 
 autocmd FileType make set noexpandtab shiftwidth=4 softtabstop=0 tw=0
 autocmd FileType go set noexpandtab shiftwidth=4 softtabstop=0 tw=0

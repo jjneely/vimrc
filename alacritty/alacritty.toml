@@ -1,0 +1,37 @@
+[env]
+TERM = "xterm-256color"
+
+[colors.primary]
+background = "#000000"
+foreground = "#c8c8c8"
+
+[font]
+size = 18
+
+[font.normal]
+family = "JuliaMono Nerd Font"
+style = "Medium"
+
+[font.offset]
+y = 2
+
+[[keyboard.bindings]]
+action = "CreateNewWindow"
+key = "Return"
+mods = "Command"
+
+[selection]
+save_to_clipboard = true
+
+[terminal.shell]
+args = ["--login"]
+program = "/usr/local/bin/bash"
+
+[window]
+dynamic_padding = true
+
+[window.padding]
+x = 6
+y = 3
+
+[terminal]

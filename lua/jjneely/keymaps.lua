@@ -29,7 +29,7 @@ vim.g.maplocalleader = " "
 -- Normal Mode --
 keymap("n", "<leader>e", ":Lex 30<cr>", opts) -- file explorer
 
--- Paste Mode bindings
+-- F2 Paste Mode bindings
 keymap("n", "gp", "`[v`]", opts) -- reselect pasted text
 keymap("n", "<F2>", ":set invpaste paste?<CR>", opts) -- go into paste mode from normal mode
 
@@ -45,6 +45,9 @@ keymap("t", "<Esc>", "<C-\\><C-n>", opts)
 vim.cmd [[
     autocmd TermClose * execute 'bdelete! ' . expand('<abuf>')
 ]] -- close the terminal window automatically
+
+-- F6 Trim whitespace damnit
+keymap("n", "<F6>", ":let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR>", opts)
 
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
