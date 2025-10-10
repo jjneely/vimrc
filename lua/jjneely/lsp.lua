@@ -1,52 +1,59 @@
--- Check if mason is installed
+-- Setup Mason for installing LSP servers
 local mason_status, mason = pcall(require, "mason")
-if not mason_status then
-  return
+if mason_status then
+  mason.setup()
 end
 
-local mason_lspconfig_status, mason_lspconfig = pcall(require, "mason-lspconfig")
-if not mason_lspconfig_status then
-  return
-end
-
-local lspconfig_status, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status then
-  return
-end
-
--- Setup Mason
-mason.setup()
-
-mason_lspconfig.setup({
-  ensure_installed = { "lua_ls", "gopls", "rust_analyzer", "pyright", "bashls" },
+-- LSP keybindings on attach
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local bufnr = args.buf
+    local bufopts = { noremap=true, silent=true, buffer=bufnr }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+    vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  end,
 })
 
--- LSP settings
-local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Mappings
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
-end
-
+-- Setup language servers using native vim.lsp.config
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- Manually setup each language server
-local servers = { "lua_ls", "gopls", "rust_analyzer", "pyright", "bashls" }
-for _, server_name in ipairs(servers) do
-  lspconfig[server_name].setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-  })
-end
+vim.lsp.config('lua_ls', {
+  cmd = { 'lua-language-server' },
+  root_markers = { '.luarc.json', '.luacheckrc', '.stylua.toml', 'stylua.toml', 'selene.toml', '.git' },
+  capabilities = capabilities,
+})
+
+vim.lsp.config('gopls', {
+  cmd = { 'gopls' },
+  root_markers = { 'go.mod', 'go.work', '.git' },
+  capabilities = capabilities,
+})
+
+vim.lsp.config('rust_analyzer', {
+  cmd = { 'rust-analyzer' },
+  root_markers = { 'Cargo.toml', '.git' },
+  capabilities = capabilities,
+})
+
+vim.lsp.config('pyright', {
+  cmd = { 'pyright-langserver', '--stdio' },
+  root_markers = { 'pyproject.toml', 'setup.py', '.git' },
+  capabilities = capabilities,
+})
+
+vim.lsp.config('bashls', {
+  cmd = { 'bash-language-server', 'start' },
+  root_markers = { '.git' },
+  capabilities = capabilities,
+})
+
+-- Enable LSP servers
+vim.lsp.enable({ 'lua_ls', 'gopls', 'rust_analyzer', 'pyright', 'bashls' })
