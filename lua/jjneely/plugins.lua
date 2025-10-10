@@ -75,7 +75,7 @@ return packer.startup(function(use)
   -- -- snippets
   use {
       "L3MON4D3/LuaSnip", --snippet engine
-      run = "make install_jsregexp"
+      run = "gmake install_jsregexp"
   }
   use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
@@ -89,10 +89,10 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope.nvim"
 
   -- -- Treesitter
-  -- use {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   run = ":TSUpdate",
-  -- }
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+  }
   -- use "JoosepAlviste/nvim-ts-context-commentstring"
 
   -- -- Git
