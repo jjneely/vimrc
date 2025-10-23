@@ -73,6 +73,12 @@ local plugins = {
     event = { "BufReadPost", "BufNewFile" },
   },
 
+  -- Which-key for keybinding hints
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+  },
+
   -- Commented out plugins (uncomment to enable)
   -- "windwp/nvim-autopairs",
   -- "numToStr/Comment.nvim",
@@ -85,7 +91,6 @@ local plugins = {
   -- "ahmedkhalf/project.nvim",
   -- "lukas-reineke/indent-blankline.nvim",
   -- "goolord/alpha-nvim",
-  -- "folke/which-key.nvim",
   -- "lewis6991/gitsigns.nvim",
   -- "JoosepAlviste/nvim-ts-context-commentstring",
 }

@@ -25,11 +25,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- Setup language servers using native vim.lsp.config
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-vim.lsp.config('lua_ls', {
-  cmd = { 'lua-language-server' },
-  root_markers = { '.luarc.json', '.luacheckrc', '.stylua.toml', 'stylua.toml', 'selene.toml', '.git' },
-  capabilities = capabilities,
-})
+-- lua_ls - DISABLED: lua-language-server not available on FreeBSD via Mason
+-- Uncomment and install via: pkg install lua-language-server
+-- vim.lsp.config('lua_ls', {
+--   cmd = { 'lua-language-server' },
+--   root_markers = { '.luarc.json', '.luacheckrc', '.stylua.toml', 'stylua.toml', 'selene.toml', '.git' },
+--   capabilities = capabilities,
+-- })
 
 vim.lsp.config('gopls', {
   cmd = { 'gopls' },
@@ -37,11 +39,11 @@ vim.lsp.config('gopls', {
   capabilities = capabilities,
 })
 
-vim.lsp.config('rust_analyzer', {
-  cmd = { 'rust-analyzer' },
-  root_markers = { 'Cargo.toml', '.git' },
-  capabilities = capabilities,
-})
+-- vim.lsp.config('rust_analyzer', {
+--   cmd = { vim.fn.expand('~/.cargo/bin/rust-analyzer') },
+--   root_markers = { 'Cargo.toml', '.git' },
+--   capabilities = capabilities,
+-- })
 
 vim.lsp.config('pyright', {
   cmd = { 'pyright-langserver', '--stdio' },
@@ -55,5 +57,5 @@ vim.lsp.config('bashls', {
   capabilities = capabilities,
 })
 
--- Enable LSP servers
-vim.lsp.enable({ 'lua_ls', 'gopls', 'rust_analyzer', 'pyright', 'bashls' })
+-- Enable LSP servers (lua_ls disabled - not installed)
+vim.lsp.enable({ 'gopls', 'pyright', 'bashls' })
