@@ -36,4 +36,5 @@ autocmd FileType yaml set tw=0
 autocmd FileType dockerfile set tw=0
 autocmd FileType gitcommit set tw=78
 autocmd FileType markdown set tw=78
+autocmd FileType typst setlocal tw=78 wrap linebreak spell spelllang=en_us
 ]]

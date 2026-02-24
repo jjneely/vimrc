@@ -57,5 +57,13 @@ vim.lsp.config('bashls', {
   capabilities = capabilities,
 })
 
+-- tinymist - Typst language server (install via: MasonInstall tinymist)
+vim.lsp.config('tinymist', {
+  cmd = { 'tinymist', 'lsp' },
+  filetypes = { 'typst' },
+  root_markers = { '.git' },
+  capabilities = capabilities,
+})
+
 -- Enable LSP servers (lua_ls disabled - not installed)
-vim.lsp.enable({ 'gopls', 'pyright', 'bashls' })
+vim.lsp.enable({ 'gopls', 'pyright', 'bashls', 'tinymist' })
