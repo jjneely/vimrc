@@ -23,7 +23,7 @@ autocmd BufRead,BufNewFile * if &ft == '' | set spell spelllang=en_us | endif
  " spell check text files
 autocmd FileType text setlocal spell  spelllang=en_us
 autocmd FileType markdown setlocal spell  spelllang=en_us
-set spellfile=~/.vim/spell.en_us.add
+set spellfile=~/.config/nvim/spell.en_us.add
 " zg to add word to word list
 " zw to reverse
 " zug to remove word from word list

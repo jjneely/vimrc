@@ -1,4 +1,5 @@
 local options = {
+  autoread = true,
   backspace = "indent,eol,start",          -- backspace key works like you expect
   backup = false,                          -- creates a backup file
   -- clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
@@ -35,7 +36,8 @@ local options = {
   signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
   colorcolumn = "80",                      -- highlight the 80th column
 
-  wrap = false,                            -- display lines as one long line
+  wrap = true,                             -- display lines as one long line
+  linebreak = true,                        -- break at word boundaries
   scrolloff = 10,                          -- is one of my fav
   sidescrolloff = 10,
   guifont = "JuliaMono:h18",               -- the font used in graphical neovim applications
