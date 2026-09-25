@@ -67,10 +67,12 @@ local plugins = {
   },
 
   -- Treesitter
+  -- The `main` branch is a full rewrite and does not support lazy-loading.
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
   },
 
   -- Which-key for keybinding hints
