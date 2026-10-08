@@ -1,0 +1,4 @@
+background = #000000
+font-size = 18
+#font-family = JuliaMono
+copy-on-select = clipboard
